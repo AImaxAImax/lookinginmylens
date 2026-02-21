@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Josh Robinson — Live Broadcast Video Professional</title>
+  <meta name="description" content="Live broadcast video professional based in Seattle. Camera operation, video engineering, transmission, and technical direction across sports, esports, and corporate productions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0b0b0b;
+      --bg-2:       #111111;
+      --bg-3:       #181818;
+      --border:     #1f1f1f;
+      --text:       #f0f0f0;
+      --text-muted: #888;
+      --text-dim:   #444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(11, 11, 11, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-color: var(--border);
+    }
+    .nav-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-cta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-cta:hover { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .section-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 6rem 2.5rem;
+    }
+    .section-inner.hero-inner {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 7rem;
+      padding-bottom: 4rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    /* ── LABELS ── */
+    .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+    }
+
+    /* ── HERO ── */
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+    .hero-name {
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.75rem;
+    }
+    .hero-title {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      margin-bottom: 2.5rem;
+    }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── ABOUT ── */
+    .about-body {
+      max-width: 660px;
+    }
+    .about-body p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: #bbb;
+      margin-bottom: 1.25rem;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body strong { color: var(--text); font-weight: 500; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--bg);
+      padding: 2rem 1.75rem;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: var(--bg-3); }
+    .service-icon {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── CLIENTS ── */
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .client-cell {
+      background: var(--bg);
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.25rem;
+      transition: background 0.2s;
+    }
+    .client-cell:hover { background: var(--bg-3); }
+    .client-logo {
+      max-width: 88px;
+      max-height: 36px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0) invert(1);
+      opacity: 0.45;
+      transition: opacity 0.2s;
+    }
+    .client-cell:hover .client-logo { opacity: 0.75; }
+    .client-name {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .stat {
+      flex: 1;
+      padding: 2rem;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--bg-3); }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CONTACT ── */
+    .contact-wrap {
+      text-align: center;
+      padding: 5rem 2.5rem 8rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .contact-heading {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 2.25rem;
+    }
+    .contact-email {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      transition: border-color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .contact-email:hover { border-color: var(--text-muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.25rem 2.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .section-inner { padding: 4rem 1.5rem; }
+      .section-inner.hero-inner { padding-top: 6rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { flex-wrap: wrap; }
+      .stat { flex: 1 1 45%; border-bottom: 1px solid var(--border); }
+      .contact-wrap { padding: 4rem 1.5rem 6rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-name { letter-spacing: -0.03em; }
+      .services-grid { grid-template-columns: 1fr; }
+      .clients-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-row { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-name">Josh Robinson</a>
+    <a href="mailto:josh@lookinginmylens.com" class="nav-cta">Get in touch →</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="section-inner hero-inner">
+    <p class="hero-eyebrow">Seattle, WA &nbsp;·&nbsp; Available Worldwide</p>
+    <h1 class="hero-name">Josh<br>Robinson</h1>
+    <p class="hero-title">Live Broadcast Video Professional</p>
+    <div class="pills">
+      <span class="pill">Camera Operation</span>
+      <span class="pill">Video Engineering</span>
+      <span class="pill">Transmission</span>
+      <span class="pill">Technical Direction</span>
+      <span class="pill">IATSE Local 15</span>
+      <span class="pill">IBEW 45</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div style="border-top: 1px solid var(--border);">
+    <div class="section-inner">
+      <p class="label">About</p>
+      <div class="about-body">
+        <p>Over a decade working the <strong>full broadcast video signal chain</strong> — camera to engineering, transmission, and technical direction — across live sports, esports, corporate, and international productions.</p>
+        <p>From NFL sidelines and major league venues to global corporate stages and esports arenas, the scale changes. The <strong>discipline doesn't</strong>. Every frame matters when you're live.</p>
+        <p>Based in Seattle. Currently bringing broadcast-grade production standards to the <strong>OTT and creator space</strong> — working with streamers, digital-first sports networks, and next-generation live content producers.</p>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years in broadcast</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Production clients</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Core disciplines</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Hours live</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div style="border-top: 1px solid var(--border);">
+    <div class="section-inner">
+      <p class="label">What I Do</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🎥</span>
+          <h3 class="service-title">Camera Operation</h3>
+          <p class="service-desc">Studio, ENG, handheld, and specialty camera operation for live broadcast, sports, and event production at any scale.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">⚡</span>
+          <h3 class="service-title">Video Engineering</h3>
+          <p class="service-desc">Signal path setup, camera shading, color matching, and full technical infrastructure for live production environments.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📡</span>
+          <h3 class="service-title">Video Transmission</h3>
+          <p class="service-desc">Broadcast signal transmission, encoding, and delivery across fiber, RF, and IP-based production workflows.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🎛️</span>
+          <h3 class="service-title">Technical Direction</h3>
+          <p class="service-desc">Live switcher operation, multi-camera coordination, and technical oversight across complex broadcast productions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <div style="border-top: 1px solid var(--border);">
+    <div class="section-inner">
+      <p class="label">Clients &amp; Productions</p>
+      <div class="clients-grid" id="clientsGrid"></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div style="border-top: 1px solid var(--border);">
+    <div class="contact-wrap">
+      <h2 class="contact-heading">Let's work together.</h2>
+      <p class="contact-sub">Available for live events, touring productions, and remote engagements worldwide.</p>
+      <a href="mailto:josh@lookinginmylens.com" class="contact-email">josh@lookinginmylens.com</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Josh Robinson &nbsp;·&nbsp; lookinginmylens.com</p>
+  </footer>
+
+  <script>
+    // Nav scroll behaviour
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Client data — sorted by recognisability
+    const clients = [
+      { name: 'ESPN',          domain: 'espn.com' },
+      { name: 'Fox Sports',    domain: 'foxsports.com' },
+      { name: 'CBS Sports',    domain: 'cbssports.com' },
+      { name: 'NFL',           domain: 'nfl.com' },
+      { name: 'MLS',           domain: 'mlssoccer.com' },
+      { name: 'Microsoft',     domain: 'microsoft.com' },
+      { name: 'Apple',         domain: 'apple.com' },
+      { name: 'Google',        domain: 'google.com' },
+      { name: 'Amazon',        domain: 'amazon.com' },
+      { name: 'Netflix',       domain: 'netflix.com' },
+      { name: 'Riot Games',    domain: 'riotgames.com' },
+      { name: 'Salesforce',    domain: 'salesforce.com' },
+      { name: 'Hawk-Eye',      domain: 'hawkeyeinnovations.com' },
+      { name: 'Valve',         domain: 'valvesoftware.com' },
+      { name: 'Tableau',       domain: 'tableau.com' },
+      { name: 'Zillow',        domain: 'zillow.com' },
+      { name: 'EY',            domain: 'ey.com' },
+      { name: 'NHRA',          domain: 'nhra.com' },
+      { name: 'MotoAmerica',   domain: 'motoamerica.com' },
+      { name: 'St. Jude',      domain: 'stjude.org' },
+      { name: 'RUN Studios',   domain: 'runstudios.com' },
+      { name: 'Big Fish Games',domain: 'bigfishgames.com' },
+    ];
+
+    const grid = document.getElementById('clientsGrid');
+    clients.forEach(client => {
+      const cell = document.createElement('div');
+      cell.className = 'client-cell';
+
+      const img = document.createElement('img');
+      img.className = 'client-logo';
+      img.alt = client.name;
+      img.loading = 'lazy';
+      img.src = `https://logo.clearbit.com/${client.domain}`;
+
+      const text = document.createElement('span');
+      text.className = 'client-name';
+      text.textContent = client.name;
+      text.style.display = 'none';
+
+      img.onerror = () => {
+        img.style.display = 'none';
+        text.style.display = 'block';
+      };
+
+      cell.appendChild(img);
+      cell.appendChild(text);
+      grid.appendChild(cell);
+    });
+  </script>
+
+</body>
+</html>
