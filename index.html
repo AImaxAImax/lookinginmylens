@@ -98,7 +98,9 @@
   <div style="border-top: 1px solid var(--border);">
     <div class="section-inner">
       <p class="label">Clients &amp; Productions</p>
-      <div class="clients-grid" id="clientsGrid"></div>
+      <div class="clients-track-outer">
+        <div class="clients-track" id="clientsGrid"></div>
+      </div>
     </div>
   </div>
 
@@ -107,7 +109,10 @@
     <div class="contact-wrap">
       <h2 class="contact-heading">Let's work together.</h2>
       <p class="contact-sub">Available for live events, touring productions, and remote engagements worldwide.</p>
-      <a href="mailto:josh@lookinginmylens.com" class="contact-email">josh@lookinginmylens.com</a>
+      <a href="mailto:josh@lookinginmylens.com" class="contact-btn">
+        Get in touch →
+      </a>
+      <p class="contact-email-small">josh@lookinginmylens.com</p>
     </div>
   </div>
 
@@ -179,6 +184,10 @@
       cell.appendChild(text);
       grid.appendChild(cell);
     });
+
+    // Duplicate cells for seamless marquee loop
+    const allCells = Array.from(grid.children);
+    allCells.forEach(cell => grid.appendChild(cell.cloneNode(true)));
 
     // Scroll-triggered fade-up animations
     const observer = new IntersectionObserver(entries => {
